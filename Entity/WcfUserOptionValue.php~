@@ -1,0 +1,277 @@
+<?php
+
+namespace stepotronic\WcfToSymfonyBridgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * WcfUserOptionValue
+ *
+ * @ORM\Table(name="wcf_user_option_value")
+ * @ORM\Entity
+ */
+class WcfUserOptionValue
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption1", type="text", length=65535, nullable=true)
+     */
+    private $useroption1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption2", type="string", length=10, nullable=false)
+     */
+    private $useroption2;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userOption3", type="boolean", nullable=false)
+     */
+    private $useroption3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption4", type="text", length=65535, nullable=true)
+     */
+    private $useroption4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption5", type="text", length=65535, nullable=true)
+     */
+    private $useroption5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption6", type="text", length=65535, nullable=true)
+     */
+    private $useroption6;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption7", type="text", length=65535, nullable=true)
+     */
+    private $useroption7;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption8", type="text", length=16777215, nullable=true)
+     */
+    private $useroption8;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption9", type="text", length=65535, nullable=true)
+     */
+    private $useroption9;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption10", type="text", length=65535, nullable=true)
+     */
+    private $useroption10;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption11", type="text", length=65535, nullable=true)
+     */
+    private $useroption11;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption12", type="text", length=65535, nullable=true)
+     */
+    private $useroption12;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption13", type="text", length=65535, nullable=true)
+     */
+    private $useroption13;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption14", type="text", length=65535, nullable=true)
+     */
+    private $useroption14;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption15", type="text", length=65535, nullable=true)
+     */
+    private $useroption15;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userOption16", type="boolean", nullable=false)
+     */
+    private $useroption16;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption17", type="text", length=65535, nullable=true)
+     */
+    private $useroption17;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption18", type="text", length=65535, nullable=true)
+     */
+    private $useroption18;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption19", type="text", length=65535, nullable=true)
+     */
+    private $useroption19;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption20", type="text", length=65535, nullable=true)
+     */
+    private $useroption20;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userOption21", type="boolean", nullable=false)
+     */
+    private $useroption21;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption22", type="text", length=65535, nullable=true)
+     */
+    private $useroption22;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption23", type="text", length=65535, nullable=true)
+     */
+    private $useroption23;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption24", type="text", length=65535, nullable=true)
+     */
+    private $useroption24;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption25", type="text", length=65535, nullable=true)
+     */
+    private $useroption25;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption27", type="text", length=65535, nullable=true)
+     */
+    private $useroption27;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption28", type="text", length=65535, nullable=true)
+     */
+    private $useroption28;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userOption29", type="boolean", nullable=false)
+     */
+    private $useroption29;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption31", type="text", length=65535, nullable=true)
+     */
+    private $useroption31;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption32", type="text", length=65535, nullable=true)
+     */
+    private $useroption32;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption33", type="text", length=65535, nullable=true)
+     */
+    private $useroption33;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption34", type="text", length=65535, nullable=true)
+     */
+    private $useroption34;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption35", type="text", length=65535, nullable=true)
+     */
+    private $useroption35;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption36", type="text", length=65535, nullable=true)
+     */
+    private $useroption36;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption37", type="text", length=65535, nullable=true)
+     */
+    private $useroption37;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOption38", type="text", length=65535, nullable=true)
+     */
+    private $useroption38;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="userID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $userid;
+
+
+}

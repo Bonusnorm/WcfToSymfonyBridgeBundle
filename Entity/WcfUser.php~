@@ -1,0 +1,320 @@
+<?php
+
+namespace stepotronic\WcfToSymfonyBridgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * WcfUser
+ *
+ * @ORM\Table(name="wcf_user", indexes={@ORM\Index(name="username", columns={"username"}), @ORM\Index(name="registrationDate", columns={"registrationDate"}), @ORM\Index(name="styleID", columns={"styleID"}), @ORM\Index(name="activationCode", columns={"activationCode"}), @ORM\Index(name="registrationData", columns={"registrationIpAddress", "registrationDate"}), @ORM\Index(name="activityPoints", columns={"activityPoints"}), @ORM\Index(name="likesReceived", columns={"likesReceived"}), @ORM\Index(name="99534d56799b78a28b3afd08a5582998_fk", columns={"avatarID"}), @ORM\Index(name="4701917c09ab22152907bc412a1ff9bf_fk", columns={"rankID"}), @ORM\Index(name="e9baf116e7dc934c6311c3beebabed5d_fk", columns={"userOnlineGroupID"}), @ORM\Index(name="blogEntries", columns={"blogEntries"}), @ORM\Index(name="wbbPosts", columns={"wbbPosts"})})
+ * @ORM\Entity
+ */
+class WcfUser
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=100, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="accessToken", type="string", length=40, nullable=false)
+     */
+    private $accesstoken;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="languageID", type="integer", nullable=false)
+     */
+    private $languageid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="registrationDate", type="integer", nullable=false)
+     */
+    private $registrationdate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="styleID", type="integer", nullable=false)
+     */
+    private $styleid;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="banned", type="boolean", nullable=false)
+     */
+    private $banned;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="banReason", type="text", length=16777215, nullable=true)
+     */
+    private $banreason;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="activationCode", type="integer", nullable=false)
+     */
+    private $activationcode;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lastLostPasswordRequestTime", type="integer", nullable=false)
+     */
+    private $lastlostpasswordrequesttime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lostPasswordKey", type="string", length=40, nullable=false)
+     */
+    private $lostpasswordkey;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lastUsernameChange", type="integer", nullable=false)
+     */
+    private $lastusernamechange;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="newEmail", type="string", length=255, nullable=false)
+     */
+    private $newemail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="oldUsername", type="string", length=255, nullable=false)
+     */
+    private $oldusername;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quitStarted", type="integer", nullable=false)
+     */
+    private $quitstarted;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reactivationCode", type="integer", nullable=false)
+     */
+    private $reactivationcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registrationIpAddress", type="string", length=39, nullable=false)
+     */
+    private $registrationipaddress;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="avatarID", type="integer", nullable=true)
+     */
+    private $avatarid;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disableAvatar", type="boolean", nullable=false)
+     */
+    private $disableavatar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="disableAvatarReason", type="text", length=65535, nullable=true)
+     */
+    private $disableavatarreason;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="enableGravatar", type="boolean", nullable=false)
+     */
+    private $enablegravatar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="signature", type="text", length=65535, nullable=true)
+     */
+    private $signature;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="signatureEnableBBCodes", type="boolean", nullable=false)
+     */
+    private $signatureenablebbcodes;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="signatureEnableHtml", type="boolean", nullable=false)
+     */
+    private $signatureenablehtml;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="signatureEnableSmilies", type="boolean", nullable=false)
+     */
+    private $signatureenablesmilies;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disableSignature", type="boolean", nullable=false)
+     */
+    private $disablesignature;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="disableSignatureReason", type="text", length=65535, nullable=true)
+     */
+    private $disablesignaturereason;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lastActivityTime", type="integer", nullable=false)
+     */
+    private $lastactivitytime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="profileHits", type="integer", nullable=false)
+     */
+    private $profilehits;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rankID", type="integer", nullable=true)
+     */
+    private $rankid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userTitle", type="string", length=255, nullable=false)
+     */
+    private $usertitle;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="userOnlineGroupID", type="integer", nullable=true)
+     */
+    private $useronlinegroupid;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="activityPoints", type="integer", nullable=false)
+     */
+    private $activitypoints;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notificationMailToken", type="string", length=20, nullable=false)
+     */
+    private $notificationmailtoken;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authData", type="string", length=255, nullable=false)
+     */
+    private $authdata;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="likesReceived", type="integer", nullable=false)
+     */
+    private $likesreceived;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="blogEntries", type="integer", nullable=false)
+     */
+    private $blogentries;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="wbbPosts", type="integer", nullable=false)
+     */
+    private $wbbposts;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="userID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $userid;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUserGroup", inversedBy="userid")
+     * @ORM\JoinTable(name="wcf_user_to_group",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="userID", referencedColumnName="userID")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="groupID", referencedColumnName="groupID")
+     *   }
+     * )
+     */
+    private $groupid;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groupid = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

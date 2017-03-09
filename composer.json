@@ -1,0 +1,18 @@
+{
+  "name": "stepotronic/wcf-to-symfony-bridge-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony WcfToSymfonyBridgeBundle",
+  "authors": [
+    {
+      "name": "Thorsten 'stepo' Hallwas",
+      "email": "stepotronic@web.de",
+      "homepage": "http://www.stepotronic.de",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}

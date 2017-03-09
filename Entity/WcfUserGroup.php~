@@ -1,0 +1,81 @@
+<?php
+
+namespace stepotronic\WcfToSymfonyBridgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * WcfUserGroup
+ *
+ * @ORM\Table(name="wcf_user_group")
+ * @ORM\Entity
+ */
+class WcfUserGroup
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupName", type="string", length=255, nullable=false)
+     */
+    private $groupname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupDescription", type="text", length=65535, nullable=true)
+     */
+    private $groupdescription;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="groupType", type="boolean", nullable=false)
+     */
+    private $grouptype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="priority", type="integer", nullable=false)
+     */
+    private $priority;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userOnlineMarking", type="string", length=255, nullable=false)
+     */
+    private $useronlinemarking;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showOnTeamPage", type="boolean", nullable=false)
+     */
+    private $showonteampage;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="groupID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $groupid;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUser", mappedBy="groupid")
+     */
+    private $userid;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->userid = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

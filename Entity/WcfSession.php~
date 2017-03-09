@@ -1,0 +1,119 @@
+<?php
+
+namespace stepotronic\WcfToSymfonyBridgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * WcfSession
+ *
+ * @ORM\Table(name="wcf_session", indexes={@ORM\Index(name="packageID", columns={"lastActivityTime", "spiderID"}), @ORM\Index(name="93919bae2c5bdd073bedaa4987bf1923_fk", columns={"userID"}), @ORM\Index(name="b5cc45ca92a472f0aa34b7256c104c59_fk", columns={"spiderID"})})
+ * @ORM\Entity
+ */
+class WcfSession
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ipAddress", type="string", length=39, nullable=false)
+     */
+    private $ipaddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userAgent", type="string", length=255, nullable=false)
+     */
+    private $useragent;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lastActivityTime", type="integer", nullable=false)
+     */
+    private $lastactivitytime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="requestURI", type="string", length=255, nullable=false)
+     */
+    private $requesturi;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="requestMethod", type="string", length=7, nullable=false)
+     */
+    private $requestmethod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="controller", type="string", length=255, nullable=false)
+     */
+    private $controller;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentObjectType", type="string", length=255, nullable=false)
+     */
+    private $parentobjecttype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="parentObjectID", type="integer", nullable=false)
+     */
+    private $parentobjectid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="objectType", type="string", length=255, nullable=false)
+     */
+    private $objecttype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="objectID", type="integer", nullable=false)
+     */
+    private $objectid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sessionVariables", type="text", length=16777215, nullable=true)
+     */
+    private $sessionvariables;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="spiderID", type="integer", nullable=true)
+     */
+    private $spiderid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sessionID", type="string", length=40)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $sessionid;
+
+    /**
+     * @var \stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUser
+     *
+     * @ORM\ManyToOne(targetEntity="stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userID", referencedColumnName="userID")
+     * })
+     */
+    private $userid;
+
+
+}

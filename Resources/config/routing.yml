@@ -1,0 +1,3 @@
+wcf_to_symfony_bridge_controllers:
+    resource: "@WcfToSymfonyBridgeBundle/Controller/"
+    type:     annotation
