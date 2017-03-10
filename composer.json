@@ -12,7 +12,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "stepotronic\\WcfToSymfonyBridgeBundle": ""
+      "stepotronic\\WcfToSymfonyBridgeBundle\\": ""
     }
   }
 }
