@@ -7,19 +7,19 @@ Interface existing installations of software of the woltlab community framework.
 https://www.woltlab.com/
 
 ## Configuration
-Add the mentioned lines to your parameters.yml.
+Add the mentioned lines to your parameters.
 Since it is possible to have more than one installation the tables can and should be prefixed.
 The default is usually "wcf1_"
 
-`stepotronic.wcftosymfonybridgebundle.db.table_prefix: wcf1_`
+`wcf_table_prefix: wcf1_`
 
 The cookie prefix can be adjusted in the admin backend of the software so there is a configuration option for it as well:
 
-`stepotronic.wcftosymfonybridgebundle.cookie_prefix: wcf_`
+`wcf_cookie_prefix: wcf_`
 
 You need to set up a default success route. It will only be used if there is no request-url the user can be redirected to after the request. 
 
-`stepotronic.wcftosymfonybridgebundle.default_success_route: homepage`
+`wcf_default_success_route: homepage`
 
 Finally here is the security.yml that puts it all together:
 
@@ -43,7 +43,7 @@ Finally here is the security.yml that puts it all together:
                 guard:
                     entry_point: wcf.form_login_authenticator
                     authenticators:
-                        - wcf.token_authenticator
+                        - wcf.cookie_hash_authenticator
                         - wcf.form_login_authenticator
     
         access_control:

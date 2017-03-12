@@ -1,9 +1,9 @@
 services:
-    wcf.token_authenticator:
+    wcf.cookie_hash_authenticator:
         class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\CookieHashAuthenticator
         arguments:
             - "@router"
-            - %stepotronic.wcftosymfonybridgebundle.cookie_prefix%
+            - "%wcf_to_symfony_bridge.cookie_prefix%"
 
     wcf.form_login_authenticator:
         class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\FormLoginAuthenticator
@@ -11,7 +11,7 @@ services:
             - "@wcf.repository.user_repository"
             - "@router"
             - "@security.password_encoder"
-            - %stepotronic.wcftosymfonybridgebundle.default_success_route%
+            - %wcf_to_symfony_bridge.default_success_route%
 
     wcf.repository.user_repository:
         class: stepotronic\WcfToSymfonyBridgeBundle\Repository\WcfUserRepository
@@ -24,6 +24,6 @@ services:
 
     wcf.tableprefix_subscriber:
         class: stepotronic\WcfToSymfonyBridgeBundle\Subscriber\WcfTablePrefixSubscriber
-        arguments: [%stepotronic.wcftosymfonybridgebundle.db.table_prefix%]
+        arguments: [%wcf_to_symfony_bridge.table_prefix%]
         tags:
             - { name: doctrine.event_subscriber }        

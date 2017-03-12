@@ -18,11 +18,15 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('wcf_to_symfony_bridge');
+        $rootNode = $treeBuilder->root('wcf_to_symfony_bridge', 'array');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('table_prefix')->defaultValue('wcf1_')->end()
+                ->scalarNode('cookie_prefix')->defaultValue('wcf_')->end()
+                ->scalarNode('default_success_route')->defaultValue('homepage')->end()
+            ->end();
+
 
         return $treeBuilder;
     }
