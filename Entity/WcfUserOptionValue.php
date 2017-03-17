@@ -111,6 +111,25 @@ class WcfUserOptionValue
     private $googlePlus;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="userID", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $userid;
+
+    /**
+     * Get userid
+     *
+     * @return integer
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
+
+    /**
      * Set aboutMe
      *
      * @param string $aboutMe
