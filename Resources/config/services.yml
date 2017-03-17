@@ -1,8 +1,25 @@
 services:
+
+    wcf.authentication_response_no_action:
+        class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\AuthenticationResponseStrategy\NoAction
+
+    wcf.authentication_redirect_to_login_route:
+        class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\AuthenticationResponseStrategy\RedirectToRoute
+        arguments:
+            - "@router"
+            - "security_login"
+
+    wcf.authentication_redirect_to_wcf_login_url:
+        class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\AuthenticationResponseStrategy\RedirectToUrl
+        arguments:
+            - "/index.php/Login"
+
     wcf.cookie_hash_authenticator:
         class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\CookieHashAuthenticator
         arguments:
-            - "@router"
+            - "@wcf.authentication_redirect_to_login_route"
+            - "@wcf.authentication_response_no_action"
+            - "@wcf.authentication_redirect_to_login_route"
             - "%wcf_to_symfony_bridge.cookie_prefix%"
 
     wcf.form_login_authenticator:

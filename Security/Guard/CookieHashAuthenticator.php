@@ -2,10 +2,9 @@
 
 namespace stepotronic\WcfToSymfonyBridgeBundle\Security\Guard;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\AuthenticationResponseStrategy\AuthenticationResponseStrategyInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -19,11 +18,6 @@ class CookieHashAuthenticator extends AbstractGuardAuthenticator
 {
 
     /**
-     * @var Router
-     */
-    protected $router;
-
-    /**
      * @var string
      */
     protected $wcfCookiePrefix;
@@ -34,15 +28,39 @@ class CookieHashAuthenticator extends AbstractGuardAuthenticator
     protected $startUrl;
 
     /**
+     * @var AuthenticationResponseStrategyInterface
+     */
+    protected $successStrategy;
+
+    /**
+     * @var AuthenticationResponseStrategyInterface
+     */
+    protected $failureStrategy;
+
+    /**
+     * @var AuthenticationResponseStrategyInterface
+     */
+    protected $startStrategy;
+
+    /**
      * CookieHashAuthenticator constructor.
      *
-     * @param Router $router
-     * @param string $wcfCookiePrefix
+     * @param AuthenticationResponseStrategyInterface $startStrategy
+     * @param AuthenticationResponseStrategyInterface $successStrategy
+     * @param AuthenticationResponseStrategyInterface $failureStrategy
+     * @param string                                  $wcfCookiePrefix
      */
-    public function __construct(Router $router, $wcfCookiePrefix)
+    public function __construct(
+        AuthenticationResponseStrategyInterface $startStrategy,
+        AuthenticationResponseStrategyInterface $successStrategy,
+        AuthenticationResponseStrategyInterface $failureStrategy,
+        $wcfCookiePrefix
+    )
     {
-        $this->router = $router;
+        $this->startStrategy   = $startStrategy;
         $this->wcfCookiePrefix = $wcfCookiePrefix;
+        $this->successStrategy = $successStrategy;
+        $this->failureStrategy = $failureStrategy;
     }
 
     /**
@@ -96,11 +114,11 @@ class CookieHashAuthenticator extends AbstractGuardAuthenticator
      * @param TokenInterface $token
      * @param string         $providerKey
      *
-     * @return null
+     * @return Response|null
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        return null;
+        return $this->successStrategy->getResponse();
     }
 
     /**
@@ -109,19 +127,24 @@ class CookieHashAuthenticator extends AbstractGuardAuthenticator
      * @param Request                 $request
      * @param AuthenticationException $exception
      *
-     * @return RedirectResponse
+     * @return Response|null
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        return new RedirectResponse($this->router->generate('security_login'));
+        return $this->failureStrategy->getResponse();
     }
 
     /**
-     * Called when authentication is needed, but it's not sent
+     * Returns a response that directs the user to authenticate.
+     * 
+     * @param Request                      $request
+     * @param AuthenticationException|null $authException
+     *
+     * @return Response|null
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        return new RedirectResponse($this->router->generate('security_login'));
+        return $this->startStrategy->getResponse();
     }
 
     /**

@@ -87,7 +87,7 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
      */
     public function getCredentials(Request $request)
     {
-        if ($request->getPathInfo() != $this->router->generate('security_login_check')) {
+        if ($request->getRequestUri() != $this->router->generate('security_login_check')) {
             return null;
         }
         $username = $request->request->get('_username');
