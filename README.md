@@ -51,6 +51,38 @@ Finally here is the security.yml that puts it all together:
             - { path: ^/, roles: ROLE_WCF }
 
 
+In the main project you will have to also include the wcf sources. Ideally you can point directly to the used wcf installation alternatively you can also use the following in your composer.json
+
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "woltlab/wcf",
+                "version": "2.0",
+                "source": {
+                    "url": "https://github.com/WoltLab/WCF",
+                    "type": "git",
+                    "reference": "2.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "woltlab/wcf": "*"
+    },
+
+It is possible to overwrite the default behaviour of the two guard authenticators. All redirects in cases of success or failure are configurable.
+Here is an example with a redirect to the wcf login url:
+    
+    app.cookie_hash_authenticator:
+        class: stepotronic\WcfToSymfonyBridgeBundle\Security\Guard\CookieHashAuthenticator
+        arguments:
+            - "@wcf.authentication_redirect_to_wcf_login_url"
+            - "@wcf.authentication_response_no_action"
+            - "@wcf.authentication_redirect_to_wcf_login_url"
+            - "%wcf_to_symfony_bridge.cookie_prefix%"
+
+
 ## Next steps
 If you use it, be aware of the fact that I did not create a secure login controller here. Don't use it!
 It however can help you debug and maybe help me improve this bundle.
