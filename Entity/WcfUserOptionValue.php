@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * WcfUserOptionValue
  *
  * @ORM\Table(name="user_option_value")
- * @ORM\Entity
+ * @ORM\MappedSuperclass
  */
 class WcfUserOptionValue
 {
