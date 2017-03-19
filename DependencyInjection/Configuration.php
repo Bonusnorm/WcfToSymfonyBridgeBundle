@@ -25,6 +25,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('table_prefix')->defaultValue('wcf1_')->end()
                 ->scalarNode('cookie_prefix')->defaultValue('wcf_')->end()
                 ->scalarNode('default_success_route')->defaultValue('homepage')->end()
+                ->arrayNode('prefixed_entity_classes')
+                    ->prototype('scalar')->end()
+                ->end()
             ->end();
 
 

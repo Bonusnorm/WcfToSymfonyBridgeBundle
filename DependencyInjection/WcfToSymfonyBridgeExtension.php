@@ -28,6 +28,7 @@ class WcfToSymfonyBridgeExtension extends Extension
         $container->setParameter('wcf_to_symfony_bridge.cookie_prefix', $config['cookie_prefix']);
         $container->setParameter('wcf_to_symfony_bridge.default_success_route', $config['default_success_route']);
         $container->setParameter('wcf_to_symfony_bridge.table_prefix', $config['table_prefix']);
+        $container->setParameter('wcf_to_symfony_bridge.prefixed_entity_classes', $config['prefixed_entity_classes']);
 
     }
 }

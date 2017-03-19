@@ -41,6 +41,8 @@ services:
 
     wcf.tableprefix_subscriber:
         class: stepotronic\WcfToSymfonyBridgeBundle\Subscriber\WcfTablePrefixSubscriber
-        arguments: [%wcf_to_symfony_bridge.table_prefix%]
+        arguments:
+            - %wcf_to_symfony_bridge.table_prefix%
+            - %wcf_to_symfony_bridge.prefixed_entity_classes%
         tags:
             - { name: doctrine.event_subscriber }        

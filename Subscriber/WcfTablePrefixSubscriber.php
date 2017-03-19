@@ -3,12 +3,21 @@
 namespace stepotronic\WcfToSymfonyBridgeBundle\Subscriber;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
+use stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfSession;
+use stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUser;
+use stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUserGroup;
+use stepotronic\WcfToSymfonyBridgeBundle\Entity\WcfUserOptionValue;
 
 /**
  * Adds the prefix to the wcf tables.
  */
 class WcfTablePrefixSubscriber implements \Doctrine\Common\EventSubscriber
 {
+
+    /**
+     * @var array
+     */
+    protected $prefixedClasses = array();
 
     /**
      * @var string
@@ -19,10 +28,12 @@ class WcfTablePrefixSubscriber implements \Doctrine\Common\EventSubscriber
      * Constructor.
      *
      * @param string $prefix
+     * @param array  $prefixedClasses
      */
-    public function __construct($prefix)
+    public function __construct($prefix, array $prefixedClasses)
     {
         $this->prefix = (string) $prefix;
+        $this->prefixedClasses = $prefixedClasses;
     }
 
     /**
@@ -33,9 +44,15 @@ class WcfTablePrefixSubscriber implements \Doctrine\Common\EventSubscriber
         return array('loadClassMetadata');
     }
 
+    /**
+     * @param LoadClassMetadataEventArgs $args
+     */
     public function loadClassMetadata(LoadClassMetadataEventArgs $args)
     {
         $classMetadata = $args->getClassMetadata();
+        if (!in_array($classMetadata->getName(), $this->prefixedClasses)) {
+            return;
+        }
         if ($classMetadata->isInheritanceTypeSingleTable() && !$classMetadata->isRootEntity()) {
             return;
         }
