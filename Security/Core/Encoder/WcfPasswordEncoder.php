@@ -38,14 +38,16 @@ class WcfPasswordEncoder implements PasswordEncoderInterface
         // wcf supports multiple ways to encode the password, some of them need the username
         $isValid = false;
         // first we can check if it is the recently added blowfish
-        if (PasswordUtil::isBlowfish($encoded)) {
-            if (PasswordUtil::secureCompare($encoded, PasswordUtil::getDoubleSaltedHash($raw, $encoded))) {
-                $isValid = true;
-            }
-        } else {
-            if (PasswordUtil::checkPassword(null, $raw, $encoded)) {
-                $isValid = true;
-            }
+        if (PasswordUtil::isBlowfish($encoded) 
+            &&
+            PasswordUtil::secureCompare($encoded, PasswordUtil::getDoubleSaltedHash($raw, $encoded))
+        ) {
+            $isValid = true;
+        } elseif (PasswordUtil::detectEncryption($encoded) === 'unknown') {
+            // we are here unable to detect the encryption, the next method would throw an exception
+            $isValid = false;            
+        } elseif (PasswordUtil::checkPassword(null, $raw, $encoded)) {
+            $isValid = true;
         }
 
         return $isValid;
