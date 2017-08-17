@@ -70,6 +70,11 @@ In the main project you will have to also include the wcf sources. Ideally you c
     "require": {
         "woltlab/wcf": "*"
     },
+    "autoload": {
+        "classmap": [
+            "vendor/woltlab/wcf/wcfsetup/install/files/lib/"
+        ]
+    },    
 
 It is possible to overwrite the default behaviour of the two guard authenticators. All redirects in cases of success or failure are configurable.
 Here is an example with a redirect to the wcf login url:
