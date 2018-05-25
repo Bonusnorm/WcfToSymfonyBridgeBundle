@@ -20,12 +20,10 @@ class WcfUserRepository extends EntityRepository implements UserLoaderInterface
     {
         return $this->createQueryBuilder('u')
             ->leftJoin('WcfToSymfonyBridgeBundle:WcfSession', 's', \Doctrine\ORM\Query\Expr\Join::WITH, 'u.userid = s.userid')
-            ->where('u.username = :username OR u.email = :email OR u.userid = :userid OR s.sessionid = :sessionid')
-            ->setParameter('username', $username)
-            ->setParameter('email', $username)
-            ->setParameter('userid', $username)
+            ->where('s.sessionid = :sessionid')
             ->setParameter('sessionid', $username)
             ->getQuery()
+            ->setMaxResults(1)
             ->getOneOrNullResult();
     }
 
